@@ -1,0 +1,21 @@
+<center>
+	<h1>User Details</h1>
+</center> 
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+ 
+<p>
+  <strong>Role:</strong>
+  <%= @user.user_type %>
+</p>
+ 
+ <p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+ 
+<%= link_to 'Edit', edit_user_registration_path(@user) %> |
+<%= link_to 'Back', users_path %>
