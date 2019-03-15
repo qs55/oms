@@ -1,4 +1,4 @@
-<%= form_for [@user, Post.new] do |f| %>
+<%= form_for @post do |f| %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
@@ -9,13 +9,16 @@
   </p>
 
     <p>
-    <%= f.hidden_field :product_id, :value => "active" %>
+      <%= f.label :status %><br>
+      <%= f.select(:status, [['Active', 'active'], ['Archived', 'archived']]) %> 
   </p>
 
     <p>
     <%= f.label :picture %><br>
-    <%= f.file_field :picture, id: :post_picture %>
+    <%= f.file_field :avatar, id: :post_avatar %>
   </p>
+
+
 
   <p>
     <%= f.submit %>

@@ -1,4 +1,4 @@
 class Post < ApplicationRecord
-  belongs_to :User
+  belongs_to :user
   mount_uploader :avatar, AvatarUploader
 end

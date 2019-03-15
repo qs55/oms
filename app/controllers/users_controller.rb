@@ -28,4 +28,7 @@ class UsersController < ApplicationController
 		redirect_to users_path
 	end
 
+def user_params
+	params.require(:user).permit(:id)
+end
 end
