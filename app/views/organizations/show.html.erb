@@ -1,0 +1,48 @@
+<center>
+	<h1>Organization Details</h1>
+</center> 
+<p>
+  <strong>Manager Name</strong>
+  <%= current_user.name %>
+</p>
+ 
+<p>
+  <strong>Organization Name</strong>
+  <%= @organization.name %>
+</p>
+ 
+ <p>
+  <strong>City</strong>
+  <%= @organization.city %>
+</p>
+
+ <p>
+  <strong>State</strong>
+  <%= @organization.state%>
+</p>
+
+ <p>
+  <strong>Country</strong>
+  <%= @organization.country%>
+</p>
+
+
+ <p>
+  <strong>Street Address</strong>
+  <%= @organization.address%>
+</p>
+
+ <p>
+  <strong>Phone</strong>
+  <%= @organization.phone%>
+</p>
+
+<p>
+	<strong>Organization Logo</strong>
+	<%= image_tag(@organization.avatar_url, width: 400) if @organization.avatar.present? %>
+</p>
+
+
+ 
+<%= link_to 'Edit', edit_organization_path(@organization) %> |
+<%= link_to 'Back', organizations_path %>

@@ -1,0 +1,37 @@
+<%= form_for @organization do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </p>
+    <p>
+    <%= f.label :state %><br>
+    <%= f.text_field :state %>
+  </p>
+
+    <p>
+    <%= f.label :country %><br>
+    <%= f.text_field :country %>
+  </p>
+    <p>
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </p>
+    <p>
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone %>
+  </p>
+    <p>
+    <%= f.label :image%><br>
+    <%= f.file_field :avatar, id: :organization_avatar %>
+  </p>
+
+
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

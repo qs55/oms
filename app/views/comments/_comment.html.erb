@@ -1,0 +1,21 @@
+<p>
+  <strong>User Name</strong>
+  <%= current_user.name %>
+</p>
+ 
+<p>
+  <strong>Post Title</strong>
+  <%= comment.post.title %>
+</p>
+ 
+ <p>
+  <strong>Comment Content</strong>
+  <%= comment.message %>
+</p>
+
+ <p>
+<p>
+  <%= link_to 'Destroy Comment', [comment.post, comment],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>

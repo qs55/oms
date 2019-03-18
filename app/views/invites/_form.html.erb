@@ -1,0 +1,10 @@
+<%= form_for @invite do |f| %>
+  <p>
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

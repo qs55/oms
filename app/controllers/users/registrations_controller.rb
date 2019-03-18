@@ -70,5 +70,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       format.any(*navigational_formats) { redirect_to after_sign_out_path_for(resource_name) }
     end
   end
+
+  
 end
 

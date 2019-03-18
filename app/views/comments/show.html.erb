@@ -1,0 +1,22 @@
+<center>
+	<h1>Comment Details</h1>
+</center> 
+<p>
+  <strong>User Name</strong>
+  <%= current_user.name %>
+</p>
+ 
+<p>
+  <strong>Post Title</strong>
+  <%= @comment.post.title %>
+</p>
+ 
+ <p>
+  <strong>Comment Content</strong>
+  <%= @comment.message %>
+</p>
+
+ <p>
+
+<%= link_to 'Edit', edit_post_comment_path(@comment) %> |
+<%= link_to 'Back', post_comments_path %>

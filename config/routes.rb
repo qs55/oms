@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
 	
+  get 'invites/index'
+  get 'organizations/index'
+  get 'comments/index'
   get 'posts/index'
 	get 'employees/new'
-	devise_for :users, path: 'auth', controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+	devise_for :users, path: 'auth', controllers: { sessions: 'users/sessions', registrations: 'users/registrations', confirmations: 'users/confirmations' }
   
   	resources :users, only: [:index, :show, :destroy]
+  	resources :organizations
+  	resources :invites
   	
-  	resources :posts
+  	resources :posts do
+  		resources :comments
+  	end
+
   	
 
 	root 'users#index'

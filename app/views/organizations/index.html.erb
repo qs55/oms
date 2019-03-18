@@ -1,0 +1,32 @@
+<center>
+	<h1>All Organizations</h1>
+</center>
+
+<table cellpadding="15"cellspacing="15">
+  <tr>
+    <th>Manager Name</th>
+    <th>Organization Name </th>
+    <th>City</th>
+    <th>State</th>
+    <th>Country</th>
+    <th>Address</th>
+    <th>Phone</th>
+    <th colspan="3"></th>
+  </tr>
+ 
+    <tr>
+      <td><%= current_user.name %></td>
+      <td><strong><%= @organizations.name %></td>
+      <td><%= @organizations.city %></td>
+      <td><%= @organizations.state%></td>
+      <td><%= @organizations.country%></td>
+      <td><%= @organizations.address%></td>
+      <td><%= @organizations.phone%></td>
+      <td><%= link_to 'Show', organization_path(@organizations) %></td>
+      <td><%= link_to 'Edit',  edit_organization_path(@organizations) %></td>
+      <td><%= link_to 'Destroy', organization_path(@organizations),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+
+    </tr>
+</table>
