@@ -1,0 +1,21 @@
+<table cellpadding="15"cellspacing="15">
+  <tr>
+    <th>Name </th>
+    <th>Email</th>
+    <th>Organization</th>
+    <th>Manager</th>
+    <th>User_Type</th>
+   
+  </tr>
+ 
+ 
+  <% @invites.each do |invite| %>
+    <tr>
+      <td><%= invite.name %></td>
+      <td><%= invite.email %></td>
+      <td><%= invite.organization.name %></td>
+       <td><%= invite.organization.user.name%></td>
+      <td><%= "employee" %></td>
+    </tr>
+  <% end %>
+</table>

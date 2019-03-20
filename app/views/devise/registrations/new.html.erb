@@ -16,10 +16,13 @@
 </div>
 
 <div class="field">
-  <%= f.label :user_type %><br />
-  <%= f.select(:user_type, [['Admin', 'admin'], ['Manager', 'manager'],['Employee','employee']]) %> 
+   <%= f.hidden_field :user_type, :value => "manager" %>
 </div>
 
+
+<div class="field">
+   <%= f.hidden_field :manager_id, :value => 1 %>
+</div>
 
 
 

@@ -1,0 +1,25 @@
+<table cellpadding="15"cellspacing="15">
+  <tr>
+    <th>ID</th>
+    <th>Name </th>
+    <th>Email</th>
+    <th>User_Type</th>
+    <th colspan="3"></th>
+  </tr>
+ 
+ 
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><strong><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.user_type %></td>
+      <td><%= link_to 'Show', user_path(user) %></td>
+      <td><%= link_to 'Edit',  edit_user_registration_path(user) %></td>
+      <td><%= link_to 'Destroy', user_path(user),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+
+    </tr>
+  <% end %>
+</table>

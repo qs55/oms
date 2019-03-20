@@ -1,0 +1,35 @@
+<center>
+	<h1>All Organizations</h1>
+</center>
+
+<table cellpadding="15"cellspacing="15">
+  <tr>
+    <th>Manager Name</th>
+    <th>Organization Name </th>
+    <th>City</th>
+    <th>State</th>
+    <th>Country</th>
+    <th>Address</th>
+    <th>Phone</th>
+    <th colspan="4"></th>
+  </tr>
+ 
+  <% @organizations.each do |organization| %>
+    <tr>
+      <td><%= organization.user.name %></td>
+      <td><strong><%= organization.name %></td>
+      <td><%= organization.city %></td>
+      <td><%= organization.state%></td>
+      <td><%= organization.country%></td>
+      <td><%= organization.address%></td>
+      <td><%= organization.phone%></td>
+      <td><%= link_to 'View all employees', getUsers_path(organization) %></td>
+      <td><%= link_to 'Show', organization_path(organization) %></td>
+      <td><%= link_to 'Edit',  edit_organization_path(organization) %></td>
+      <td><%= link_to 'Destroy', organization_path(organization),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+
+    </tr>
+    <% end %>
+</table>

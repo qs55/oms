@@ -13,13 +13,28 @@ class UsersController < ApplicationController
 	# 	end
 	# end
 
+
 	def index
-		@users=User.order("name")
+		if current_user.nil?
+     		 redirect_to 'http://localhost:3000/auth/sign_in'
+     		 return
+    	end
+
+		@user=User.find(current_user.id)
+
+		if (@user.user_type == "manager")  
+			@users=@user.subordinates.where.not(:user_type => 'admin')
+		elsif (@user.user_type == "admin" )
+			@users=User.all.where.not(:user_type => 'admin')
+		end
+		render 'index'
+		
+
+		
 	end
 
 	def show
 		@user=User.find(params[:id])
-
 	end
 
 	def destroy
@@ -29,11 +44,23 @@ class UsersController < ApplicationController
 		redirect_to users_path
 	end
 
-	def invite
-
+	def organizationusers
+		@invites= Organization.find(organization_params[:org_id]).invites
 	end
+
+	def root
+		redirect_to new_user_session_path
+	end
+
+
+	private
+
 
 def user_params
 	params.require(:user).permit(:id)
+end
+
+def organization_params
+	params.permit(:org_id)
 end
 end

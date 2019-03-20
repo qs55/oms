@@ -1,10 +1,13 @@
-<%= form_for @invite do |f| %>
-  <p>
-    <%= f.label :email %><br>
-    <%= f.email_field :email %>
-  </p>
+<%= form_for current_user.invites.new do |f| %>
+<p>
+	<%= f.label :email %><br>
+	<%= f.email_field :email %>
+</p>
 
-  <p>
-    <%= f.submit %>
-  </p>
+	<%= f.label :name %><br>
+	<%= f.text_field :name %>
+
+<p>
+	<%= f.submit %>
+</p>
 <% end %>

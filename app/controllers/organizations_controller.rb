@@ -1,7 +1,7 @@
 class OrganizationsController < ApplicationController
 	before_action :set_user
-  def index
-  	@organizations=current_user.organization
+  def index 
+  		@organizations=current_user.organization
   end
 
   def new
@@ -39,6 +39,10 @@ class OrganizationsController < ApplicationController
   	@organization = current_user.organizations.find(params[:id])
    		 @organization.destroy
     	 redirect_to organizations_path
+  end
+
+  def organizationslist
+  	@organizations=Organization.all
   end
 
   private
