@@ -1,7 +1,14 @@
 class OrganizationsController < ApplicationController
 	before_action :set_user
   def index 
-  		@organizations=current_user.organization
+  #		authorize User       #pundit policy 
+  		if (@user.user_type=="admin")
+  			redirect_to organizations_organizationslist_path
+  			return
+  		elsif (@user.user_type=="manager")
+  			@organizations=current_user.organization  #here lies the problem
+  		end
+  		
   end
 
   def new
@@ -9,8 +16,11 @@ class OrganizationsController < ApplicationController
   end
 
   def create
+  	@user=User.find(current_user.id)
   	@organization = current_user.create_organization(organization_params)
    		 if @organization.save
+   		 	@user.org_id=@organization.id
+   		 	@user.save
    		 	redirect_to organization_path(@organization)
    		 else
    		 	render 'new'

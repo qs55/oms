@@ -16,6 +16,7 @@ class PostsController < ApplicationController
    		 else
    		 	render 'new'
    		 end
+   		
 	end
 
 	def show
@@ -37,9 +38,9 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
-		 @post = current_user.posts.find(params[:id])
+		 @post = Post.find(params[:id])
    		 @post.destroy
-    	 redirect_to posts_path
+    	 redirect_to request.referrer
 
 	end
 

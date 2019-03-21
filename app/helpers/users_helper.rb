@@ -2,15 +2,14 @@ module UsersHelper
 
 	def jiggle
 		if (@user.user_type =='admin')
-			@organizations=Organization.all
-			render "userlist"
-			render "organizationlist"
+			
+			render "adminview"
 			
 		elsif
 			(@user.user_type =='manager' )
-			render "userlist"
+			render "managerview"
 		else
-			controller.redirect_to user_path(@user)
+			render "userview"
     	end
   	end
 end

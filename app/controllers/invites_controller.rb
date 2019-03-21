@@ -33,6 +33,7 @@ class InvitesController < ApplicationController
 	    @user.email = invite_params[:email]
 	    @user.user_type= "employee"
 	    @user.manager_id=current_user.id
+	    @user.org_id=@organization.id
 
 	    if @user.save
 

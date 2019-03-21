@@ -16,6 +16,11 @@
   <%= @user.email %>
 </p>
 
+<h2>Posts</h2>
+<%= render @user.posts %>
+
+
+
  
 <%= link_to 'Edit', edit_user_registration_path(@user) %> |
 <%= link_to 'Back', users_path %>

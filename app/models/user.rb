@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :invites, dependent: :destroy
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_one :organization , dependent: :destroy
   accepts_nested_attributes_for :organization, allow_destroy: true
   accepts_nested_attributes_for :posts, allow_destroy: true 
@@ -17,6 +17,10 @@ class User < ApplicationRecord
                           foreign_key: "manager_id"
  
   belongs_to :manager, class_name: "User"
+
+  def admin?
+  	user_type == 'manager'
+  end
 
 
   protected

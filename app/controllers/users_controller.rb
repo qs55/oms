@@ -26,6 +26,8 @@ class UsersController < ApplicationController
 			@users=@user.subordinates.where.not(:user_type => 'admin')
 		elsif (@user.user_type == "admin" )
 			@users=User.all.where.not(:user_type => 'admin')
+		else
+			@users=User.where(:org_id => @user.org_id).or(User.where(:user_type => "admin"))
 		end
 		render 'index'
 		

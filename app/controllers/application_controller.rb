@@ -1,9 +1,11 @@
 class ApplicationController < ActionController::Base
+	include Pundit
+    protect_from_forgery
 	respond_to :html, :json
 	before_action :configure_permitted_parameters, if:  :devise_controller?
 
 	def after_sign_in_path_for(resource)
-		if (resource.sign_in_count == 1 && (resource.user_type == 'admin' || resource.user_type=='manager'))
+		if (resource.sign_in_count == 1 && resource.user_type=='manager')
 			new_organization_path
 		else
 			root_path

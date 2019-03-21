@@ -39,10 +39,10 @@
 
 <p>
 	<strong>Organization Logo</strong>
-	<%= image_tag(@organization.avatar_url, width: 400) if @organization.avatar.present? %>
+	<%= image_tag(@organization.avatar_url, class: 'rounded-circle', width: 200)  if @organization.avatar.present? %>
 </p>
 
 
  
 <%= link_to 'Edit', edit_organization_path(@organization) %> |
-<%= link_to 'Back', organizations_path %>
+<%= link_to 'Back', organizations_path  %>

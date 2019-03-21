@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Oms</title>
+  <title>Organization Management System</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -10,10 +10,11 @@
 </head>
 
 <body>
+  <%= render "layouts/header"%>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <ul class="hmenu">
-    <%= render 'devise/menu/registration_items' %>
+ #   <%= render 'devise/menu/registration_items' %>
     <%= render 'devise/menu/login_items' %>
   </ul>
   <%= yield %>
