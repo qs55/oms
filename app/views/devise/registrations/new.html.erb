@@ -1,35 +1,73 @@
-<h2>Sign up</h2>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	* {box-sizing: border-box;}
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-<%= render "devise/shared/error_messages", resource: resource %>
-
-
-
-<div class='field'>
-  <%= f.label :name %><br />
- <%= f.text_field :name, autofocus: true, autocomplete: 'name' %>
-</div>
-
-<div class="field">
-  <%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-</div>
-
-<div class="field">
-   <%= f.hidden_field :user_type, :value => "manager" %>
-</div>
-
-
-<div class="field">
-   <%= f.hidden_field :manager_id, :value => 1 %>
-</div>
+	body { 
+		margin: 0;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: center;
+	}
+	.container {
+  max-width: 600px;
+}
 
 
 
+</style>
+</head>
+<body>
 
-<div class="actions">
-  <%= f.submit "Sign up" %>
-</div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+	<div class="formcen container">
+		<h2>Sign up</h2>
+
+		<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+		<%= render "devise/shared/error_messages", resource: resource %>
+
+
+
+		<div class='field'>
+			<%= f.label :name %><br />
+			<%= f.text_field :name, autofocus: true, autocomplete: 'name', class: "form-control" %>
+		</div>
+
+		<div class="field">
+			<%= f.label :email %><br />
+			<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+		</div>
+
+		<div class="field">
+			<%= f.hidden_field :user_type, :value => "manager" %>
+		</div>
+
+
+		<div class="field">
+			<%= f.hidden_field :manager_id, :value => 1 %>
+		</div>
+
+
+		<div class="field">
+			<%= f.hidden_field :is_active, :value => true %>
+		</div>
+
+
+
+
+		<div class="actions">
+			<%= f.submit "Sign up" %>
+		</div>
+		<% end %>
+
+		<%= render "devise/shared/links" %>
+	</div>
+
+	<div class="sidenav">
+		<h3 style="color: red;">Messages</h3>
+		<p style="background-color: white;">Sign up to use messages</p>	
+	</div>
+
+</body>
+</html>

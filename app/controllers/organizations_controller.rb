@@ -1,12 +1,15 @@
 class OrganizationsController < ApplicationController
+  before_action :authenticate_user!
 	before_action :set_user
+  before_action :set_message_users
   def index 
   #		authorize User       #pundit policy 
   		if (@user.user_type=="admin")
   			redirect_to organizations_organizationslist_path
   			return
-  		elsif (@user.user_type=="manager")
-  			@organizations=current_user.organization  #here lies the problem
+  		else
+  			@organizations=Organization.where(:id => current_user.org_id).first  #here lies the problem'
+
   		end
   		
   end
@@ -66,4 +69,5 @@ class OrganizationsController < ApplicationController
 	def set_user
 		@user = User.find(current_user.id)
 	end
+
 end

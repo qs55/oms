@@ -1,11 +1,28 @@
+
 <%= form_for current_user.invites.new do |f| %>
 <p>
-	<%= f.label :email %><br>
-	<%= f.email_field :email %>
-</p>
 
 	<%= f.label :name %><br>
-	<%= f.text_field :name %>
+	<%= f.text_field :name ,class: "form-control" %>
+</p>
+
+<p>
+	<%= f.label :email %><br>
+	<%= f.email_field :email,class: "form-control" %>
+</p>
+
+<% if current_user.user_type == "admin" %>
+<p>
+  <%= f.label :organization_id %><br />
+  <%= f.select(:organization_id, Organization.all.collect {|u| [u.name, u.id]}) %> 
+</p>
+
+<% elsif  current_user.user_type == "manager"  %>
+<p>
+
+  <%= f.hidden_field :organization_id, :value => current_user.org_id %>
+</p>
+<% end %>
 
 <p>
 	<%= f.submit %>

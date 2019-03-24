@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
+	 before_action :authenticate_user!
 	before_action :set_post
+	before_action :set_message_users
 
 	def index
 		@comments=@post.comments.all
@@ -15,7 +17,7 @@ class CommentsController < ApplicationController
 		@comment.post_id=params[:post_id]
 		@comment.message=comment_params[:message]
 		if @comment.save
-			redirect_to post_comments_path
+			redirect_to post_path (@post)
 		else
 			render 'new'
 		end
@@ -63,4 +65,5 @@ class CommentsController < ApplicationController
 	def set_post
 		@post=Post.find(params[:post_id])
 	end
+
 end

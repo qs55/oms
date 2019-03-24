@@ -1,11 +1,19 @@
-<table cellpadding="15"cellspacing="15">
+<div class="main">
+  <center><h1>All Employees</h1></center>
+
+<%= link_to 'View Posts', {controller: "posts", action: "index"},{:class => :btn } %>
+
+
+<table  class ="table table-dark table-striped">
+   <thead style="background-color: rosybrown;" >
   <tr>
     <th>ID</th>
     <th>Name </th>
     <th>Email</th>
     <th>User_Type</th>
-    <th colspan="1"></th>
+    
   </tr>
+</thead>
  
  
   <% @users.each do |user| %>
@@ -14,8 +22,17 @@
       <td><strong><%= user.name %></td>
       <td><%= user.email %></td>
       <td><%= user.user_type %></td>
-      <td><%= link_to 'View Messages', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%>        
+        
 
     </tr>
   <% end %>
 </table>
+</div>
+
+<div class="sidenav">
+    <h3 style="color: red;">Messages</h3>
+    <% @users.each do |user| %>
+    <a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
+
+    <% end %>
+  </div>

@@ -1,6 +1,8 @@
+<div class="main">
 <center>
 	<h1>Post Details</h1>
 </center> 
+
 <p>
   <strong>User Name</strong>
   <%= current_user.name %>
@@ -23,14 +25,25 @@
 
 <p>
 	<strong>Post Picture</strong>
-	<%= image_tag(@post.avatar_url, width: 400) if @post.avatar.present? %>
+	<%= image_tag(@post.avatar_url, class: 'rounded-circle', width: 200) if @post.avatar.present? %>
 </p>
+
 
 <h2>Comments</h2>
 <%= render @post.comments %>
 
-<h2>Add a comment:</h2>
+<h4>Add a comment:</h4>
 <%= render 'comments/form' %>
  
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Back', posts_path,{:class => :btn , :style => {:background => :dark}} %>
+
+</div>
+
+ <div class="sidenav">
+    <h3 style="color: red;">Messages</h3>
+    <% @users.each do |user| %>
+    <a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
+
+    <% end %>
+
+</div>

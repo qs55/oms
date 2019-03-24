@@ -1,4 +1,16 @@
-<table cellpadding="15"cellspacing="15">
+<style type="text/css">
+  .btn
+  {
+    background-color: darkslategrey;
+  }
+</style>
+<div class="main">
+  <center>
+  <h1><%=@organization.name%></h1>
+  </center>
+<table class="table table-dark table-striped">
+
+   <thead style="background-color: rosybrown;" >
   <tr>
     <th>Name </th>
     <th>Email</th>
@@ -7,15 +19,28 @@
     <th>User_Type</th>
    
   </tr>
+</thead>
  
  
-  <% @invites.each do |invite| %>
+  <% @users.each do |user| %>
     <tr>
-      <td><%= invite.name %></td>
-      <td><%= invite.email %></td>
-      <td><%= invite.organization.name %></td>
-       <td><%= invite.organization.user.name%></td>
-      <td><%= "employee" %></td>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= Organization.where(:id => user.org_id).first.name %></td>
+       <td><%= User.where(:id =>user.manager_id).first.name %></td>
+      <td><%= user.user_type %></td>
     </tr>
   <% end %>
 </table>
+
+<%= link_to 'Back', organizations_organizationslist_path ,{:class => :btn , :style => {:background => :dark}} %>
+</div>
+
+ <div class="sidenav">
+    <h3 style="color: red;">Messages</h3>
+    <% @users.each do |user| %>
+    <a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
+
+    <% end %>
+
+</div>

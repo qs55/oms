@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+	  before_action :authenticate_user!
+	  before_action :set_message_users
 	before_action do
 		@conversation = Conversation.find(params[:conversation_id])
 	end
@@ -37,4 +39,6 @@ class MessagesController < ApplicationController
 	def message_params
 		params.require(:message).permit(:body, :user_id)
 	end
+
+	
 end

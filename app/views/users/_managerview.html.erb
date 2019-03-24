@@ -1,13 +1,21 @@
+<div class="main">
+ 
+<%= link_to 'View Posts', {controller: "posts", action: "index"},{:class => :btn } %>
 
-<%= link_to 'Invite an Employee', {controller: "invites", action: "new"} %>
-<table cellpadding="15"cellspacing="15">
+
+<%= link_to 'Invite an Employee', {controller: "invites", action: "new"},{:class => :btn } %>
+
+<table  class="table table-dark table-striped">
+   <thead style="background-color: rosybrown;" >
   <tr>
-    <th>ID</th>
+    <th
+    <th>User Id</th>
     <th>Name </th>
     <th>Email</th>
     <th>User_Type</th>
-    <th colspan="4"></th>
+    <th colspan="2">Options</th>
   </tr>
+</thead>
  
  
   <% @users.each do |user| %>
@@ -17,12 +25,20 @@
       <td><%= user.email %></td>
       <td><%= user.user_type %></td>
       <td><%= link_to 'Show', user_path(user) %></td>
-      <td><%= link_to 'Edit',  edit_user_registration_path(user) %></td>
+ <!--     <td><%= link_to 'Edit',  edit_user_registration_path(user) %></td> -->
       <td><%= link_to 'Destroy', user_path(user),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
-      <td><%= link_to 'View Messages', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%> 
-
+    
     </tr>
   <% end %>
 </table>
+</div>
+
+<div class="sidenav">
+    <h3 style="color: red;">Messages</h3>
+    <% @userss.each do |user| %>
+    <a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
+
+    <% end %>
+  </div>

@@ -1,16 +1,51 @@
-<h2>Resend confirmation instructions</h2>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	* {box-sizing: border-box;}
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+	body { 
+		margin: 0;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: center;
+	}
+	.container {
+		max-width: 600px;
+	}
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+</style>
+</head>
+<body>
+
+
+	<div class="formcen container">
+		<h2>Resend confirmation instructions</h2>
+
+		<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+		<%= render "devise/shared/error_messages", resource: resource %>
+
+		<div class="field">
+			<%= f.label :email %><br />
+			<%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+		</div>
+
+		<div class="actions">
+			<%= f.submit "Resend confirmation instructions" %>
+		</div>
+		<% end %>
+
+		<%= render "devise/shared/links" %>
+	</div>
+
+	<div class="sidenav">
+		<h3 style="color: red;">Messages</h3>
+		<p style="background-color: white;">Log in to see messages</p>
+
+
+	</div>  
+</body>
+</html>
+

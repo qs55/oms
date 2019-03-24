@@ -1,6 +1,28 @@
+<style type="text/css">
+	.post { 
+		
+		font-family: Arial, Helvetica, sans-serif;
+		margin-left: 250px;
+	}
+</style>
+
+<div class="main">
 <center>
 	<h1> Edit Organization </h1>
 </center>
+<div class="post">
 
 <%= render 'form' %>
-<%= link_to 'Back', organizations_path %>
+<%= link_to 'Back', organizations_path, {:class => :btn} %>
+</div>
+</div>
+
+
+ <div class="sidenav">
+    <h3 style="color: red;">Messages</h3>
+    <% @users.each do |user| %>
+    <a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
+
+    <% end %>
+
+</div>

@@ -7,9 +7,9 @@ Rails.application.routes.draw do
 	get 'employees/new'
   get 'organizations/organizationslist'
   get 'users/organization/:org_id', to: "users#organizationusers", as: 'getUsers'
-	devise_for :users, path: 'auth', controllers: { sessions: 'users/sessions', registrations: 'users/registrations', confirmations: 'users/confirmations' }
+	devise_for :users,  path: 'auth', controllers: { sessions: 'users/sessions', registrations: 'users/registrations', confirmations: 'users/confirmations' }
   
-  	resources :users, only: [:index, :show, :destroy]
+  	resources :users, only: [:index, :show, :destroy, :edit, :update]
   	resources :organizations
   	resources :invites
   	

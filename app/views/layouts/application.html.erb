@@ -1,22 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Organization Management System</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	<title>Organization Management System</title>
+	<%= csrf_meta_tags %>
+	<%= csp_meta_tag %>
+
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	<style>
+
+
+	body { 
+		background-color: khaki;
+	}
+	.main {
+		margin-left: 160px; /* Same as the width of the sidenav */
+
+		padding: 0px 10px;
+	}
+	.sidenav {
+
+		height: 100%;
+		width: 160px;
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		background-color: #111;
+		overflow-x: hidden;
+		padding-top: 20px;
+	}
+
+	.sidenav a {
+		padding: 6px 8px 6px 16px;
+		text-decoration: none;
+		font-size: 25px;
+		color: #818181;
+		display: block;
+	}
+
+	.sidenav a:hover {
+		color: #f1f1f1;
+	}
+
+
+	@media screen and (max-height: 450px) {
+		.sidenav {padding-top: 15px;}
+		.sidenav a {font-size: 18px;}
+
+	}
+	.btn {
+    background-color: darkslategrey;
+  }
+	</style>
 </head>
 
 <body>
-  <%= render "layouts/header"%>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <ul class="hmenu">
- #   <%= render 'devise/menu/registration_items' %>
-    <%= render 'devise/menu/login_items' %>
-  </ul>
-  <%= yield %>
+	<div class="main">
+		<%= render "layouts/header"%>
+		<div class="main">
+		<% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+   		 </div>
+
+		<%= yield %>
+	</div>
+
+
 </body>
 </html>

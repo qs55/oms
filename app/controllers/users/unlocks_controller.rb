@@ -27,4 +27,11 @@ class Users::UnlocksController < Devise::UnlocksController
   # def after_unlock_path_for(resource)
   #   super(resource)
   # end
+  def set_message_users
+    if(current_user.user_type=="admin")
+      @users=User.where.not(:user_type => "admin")
+    else
+      @users =User.where(:org_id => current_user.org_id)
+    end
+  end
 end

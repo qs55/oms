@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  * {box-sizing: border-box;}
+
+  body { 
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 45px;
+  }
+
+
+</style>
+</head>
+<body>
+  <div class="main">
+    <h2>Edit User</h2>
+
+    <%= form_for(@user) do |f| %>
+    <%= render "devise/shared/error_messages", resource: @user %>
+
+    <div class='field'>
+      <%= f.label :name %><br />
+      <%= f.text_field :name, autofocus: true, autocomplete: 'name' %>
+    </div>
+    
+  <div class="field">
+  <%= f.label :is_active %><br />
+  <%= f.select(:is_active, [['Active', true], ['Disabled', false]]) %> 
+</div>
+
+  <!--  <div class="field">
+  <%= f.label :user_type %><br />
+  <%= f.select(:user_type, [['Admin', 'admin'], ['Manager', 'manager'],['Employee','employee']]) %> 
+</div>  -->
+
+
+
+<div class="actions">
+  <%= f.submit "Update" %>
+</div>
+<% end %>
+
+
+<%= link_to 'Back', users_path,{:class => :btn , :style => {:background => :dark}} %>
+
+</div>
+<div class="sidenav">
+  <h3 style="color: red;">Messages</h3>
+  <% @users.each do |user| %>
+  <a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
+
+  <% end %>
+
+</div>

@@ -1,33 +1,113 @@
-<% if @over_ten %>
-<%= link_to 'Show Previous', '?m=all' %>
-<% end %>
+<style type="text/css">
+.container {
 
-<div class=”ui segment”>
- <% @messages.each do |message| %>
- <% if message.body %>
- <% user = User.find(message.user_id) %>
- <div class=”item”>
-  <div class=”content”>
-   <div class=”header”><strong><%= user.name %></strong> <%= message.message_time %></div>
-   <div class=”list”>
-     <div class=”item”>
-      <i class=”right triangle icon”></i>
-      <%= message.body %>
-    </div>
-  </div>
-</div>
-</div>
-<% end %>
-<% end %>
+	padding: 10px;
+	margin-left: 0px;
+}
+.message-blue {
+	position: relative;
+	margin-left: 20px;
+	margin-bottom: 10px;
+	padding: 10px;
+	background-color: #A8DDFD;
+	width: 200px;
+	height: 50px;
+	text-align: left;
+	font: 400 .9em 'Open Sans', sans-serif;
+	border: 1px solid #97C6E3;
+	border-radius: 10px;
+}
+.message-orange {
+	position: relative;
+	margin-bottom: 10px;
+	margin-left: calc(100% - 240px);
+	padding: 10px;
+	background-color: orange;
+	width: 200px;
+	height: 50px;
+	text-align: left;
+	font: 400 .9em 'Open Sans', sans-serif;
+	border: 1px solid #dfd087;
+	border-radius: 10px;
+}
+
+.message-content {
+	padding: 0;
+	margin: 0;
+}
+
+.custom {
+	text-align: right;
+}
+
+
+
+</style>
+
+<div class="main conatiner">
+	<% if @over_ten %>
+	<%= link_to 'Show Previous', '?m=all' %>
+	<% end %>
+
+	<%if @messages.first != nil  %>
+	<% userid = @messages.first.user_id %>
+		<%end %>
+	<div class="container">
+		<% @messages.each do |message| %>
+		<% if message.body %>
+		<% user = User.find(message.user_id) %>
+	
+		<div class=”item”>
+			<div class=”content”>
+				<% if message.user_id == userid%>
+				<div class=”header”><strong><%= user.name %></strong> <%= message.message_time %></div>
+
+				<div class=”list”>
+					<div class="item message-blue">
+						<i class="message-content"  ></i>
+						<%= message.body %>
+					</div>
+					<br>
+				</div>
+				<%else%>
+				<div class="custom"><strong><%= user.name %></strong> <%= message.message_time %></div>
+				<div class=”list”>
+					<div class="item message-orange">
+						<i class="message-content"  ></i>
+						<%= message.body %>
+					</div>
+					<br>
+				</div>
+				<%end%>
+			</div>
+		</div>
+		<% end %>
+		<% end %>
+	</div>
+
+	<%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
+	<div class=”container”>
+		<%= f.text_area :body, class: "form-control" %>
+	</div>
+	<%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+	<div>
+		<center>
+			<%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
+		</center>
+	</div>
+	<%= link_to "Back", users_path ,{:class => :btn}%>
+
+	<% end %>
+
 </div>
 
-<%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
-<div class=”field”>
- <%= f.text_area :body, class: "form-control" %>
-</div>
-<%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
-<div>
- <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
-</div>
 
-<% end %>
+
+<div class="sidenav">
+	<h3 style="color: red;">Messages</h3>
+	<% @users.each do |user| %>
+	<a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
+
+	<% end %>
+
+</div>

@@ -1,6 +1,42 @@
-<center>
-	<h1> New Invite </h1>
-</center>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	* {box-sizing: border-box;}
 
-<%= render 'form' %>
-<%= link_to 'Back', invites_path %>
+	.invite { 
+		margin: 0;
+		font-family: Arial, Helvetica, sans-serif;
+		margin-left: 200px;
+	}
+
+	.container {
+		max-width: 650px;
+	}
+
+
+</style>
+</head>
+<body>
+	<div class="invite container">
+		<center>
+			<h1> New Invite </h1>
+		</center>
+
+		<%= render 'form' %>
+
+		<%= link_to 'Back', users_path,{:class => :btn } %>
+	</div>
+
+	<div class="sidenav">
+		<h3 style="color: red;">Messages</h3>
+		<% @users.each do |user| %>
+		<a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
+
+		<% end %>
+
+	</div>
+
+</body>
+</html>

@@ -1,6 +1,65 @@
-<center>
-	<h1> Edit Post </h1>
-</center>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	* {box-sizing: border-box;}
 
-<%= render 'form' %>
-<%= link_to 'Back', post_path(@post) %>
+	.post { 
+		
+		font-family: Arial, Helvetica, sans-serif;
+		margin-left: 250px;
+	}
+	.btn
+	{
+		background-color: darkslategrey;
+	}
+</style>
+
+</head>
+<body>
+	<div class="main">
+		
+		<h1 class="post"> Edit Post </h1>
+		<div class="post">
+
+			<%= form_for @post do |f| %>
+			<p>
+				<%= f.label :title %><br>
+				<%= f.text_field :title %>
+			</p>
+			<p>
+				<%= f.label :body %><br>
+				<%= f.text_area :body %>
+			</p>
+
+			<p>
+				<%= f.label :status %><br>
+				<%= f.select(:status, [['Active', 'active'], ['Archived', 'archived']]) %> 
+			</p>
+
+			<p>
+				<%= f.label :picture %><br>
+				<%= f.file_field :avatar, id: :post_avatar %>
+			</p>
+
+
+			<p>
+				<%= f.submit %>
+			</p>
+			<% end %>
+
+			<%= link_to 'Back', posts_path ,{:class => :btn , :style => {:background => :dark}} %>
+		</div>
+	</div>
+
+	<div class="sidenav">
+		<h3 style="color: red;">Messages</h3>
+		<% @users.each do |user| %>
+		<a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
+
+		<% end %>
+
+	</div>
+</body>
+</html>
