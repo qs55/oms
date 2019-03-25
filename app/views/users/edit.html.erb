@@ -25,12 +25,12 @@
       <%= f.label :name %><br />
       <%= f.text_field :name, autofocus: true, autocomplete: 'name' %>
     </div>
-    
-  <div class="field">
-  <%= f.label :is_active %><br />
-  <%= f.select(:is_active, [['Active', true], ['Disabled', false]]) %> 
-</div>
-
+    <br>
+    <div class="field">
+      <%= f.label :Account %><br />
+      <%= f.select(:is_active, [['Active', true], ['Disabled', false]]) %> 
+    </div>
+    <br>
   <!--  <div class="field">
   <%= f.label :user_type %><br />
   <%= f.select(:user_type, [['Admin', 'admin'], ['Manager', 'manager'],['Employee','employee']]) %> 
@@ -42,7 +42,7 @@
   <%= f.submit "Update" %>
 </div>
 <% end %>
-
+<br>
 
 <%= link_to 'Back', users_path,{:class => :btn , :style => {:background => :dark}} %>
 
@@ -51,7 +51,7 @@
   <h3 style="color: red;">Messages</h3>
   <% @users.each do |user| %>
   <a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
-
+  <br>
   <% end %>
 
 </div>

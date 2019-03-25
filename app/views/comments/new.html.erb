@@ -1,6 +1,17 @@
+<div class="main">
 <center>
 	<h1> New Comment </h1>
 </center>
 
 <%= render 'form' %>
-<%= link_to 'Back', post_comments_path %>
+<%= link_to 'Back', post_comments_path, class: "btn	" %>
+
+</div>
+<div class="sidenav">
+  <h3 style="color: red;">Messages</h3>
+  <% @users.each do |user| %>
+  <a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
+     <br>
+  <% end %>
+
+</div>

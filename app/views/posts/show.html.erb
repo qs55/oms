@@ -1,49 +1,84 @@
-<div class="main">
-<center>
-	<h1>Post Details</h1>
-</center> 
+<style type="text/css">
+.post-body{
 
-<p>
-  <strong>User Name</strong>
-  <%= current_user.name %>
-</p>
+ border: double;
+ border-color: blue;
+ margin-left: 400px;
+ width: 650px;
+ height: 300px; 
+ background-color: orange;
+}
+a{
+  color:#47649F;
+}
+
+body{
+  font-family:'helvetica';    
+}
+
+
+.anchor-username h4{
+  font-weight:bold;  
+  color: #47649F; 
+  text-align: right; 
+}
+
+.anchor-time{
  
-<p>
-  <strong>Post Title</strong>
-  <%= @post.title %>
-</p>
- 
- <p>
-  <strong>Post Body</strong>
-  <%= @post.body %>
-</p>
+  font-size:1.2rem;
+   text-align: right;
+}
 
- <p>
-  <strong>Post Status</strong>
-  <%= @post.status%>
-</p>
+</style>
+<div class="container main">
+  <div class="col-md-5">
+    <div class="panel panel-default">
+      <div class="panel-body">
+       <section class="post-heading">
+        <div class="row">
+          <div class="col-md-11">
+            <div class="media">
+              <div class="media-left">
 
-<p>
-	<strong>Post Picture</strong>
-	<%= image_tag(@post.avatar_url, class: 'rounded-circle', width: 200) if @post.avatar.present? %>
-</p>
+              </div>
+              <div class="media-body">
+                <strong class="anchor-username"><h4 class="media-heading"> <%= current_user.name %></h4></strong> 
+                <p class="anchor-time"><%= @post.created_at %></p >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1">
+           <a href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
+         </div>
+       </div>             
+     </section>
+     <section class="post-body">
+       <p><%= @post.body %></p>
+     </section>
+
+   </div>
+ </div>   
+</div>
 
 
-<h2>Comments</h2>
+<br><br><br>
+<h5 style="color: red; font-size: 35px;"><u><b>Comments</b></u></h5>
 <%= render @post.comments %>
 
 <h4>Add a comment:</h4>
 <%= render 'comments/form' %>
- 
+
 <%= link_to 'Back', posts_path,{:class => :btn , :style => {:background => :dark}} %>
 
 </div>
+</div>
 
- <div class="sidenav">
-    <h3 style="color: red;">Messages</h3>
-    <% @users.each do |user| %>
-    <a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
-
-    <% end %>
+<div class="sidenav">
+  <h3 style="color: red;">Messages</h3>
+  <% @users.each do |user| %>
+  <a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
+     <br>
+  <% end %>
 
 </div>
+

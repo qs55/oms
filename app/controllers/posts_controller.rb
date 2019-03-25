@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 	before_action :set_message_users
 
 	def index
-		@posts=current_user.posts.all
+		@posts=current_user.posts.all.where(:status => "active")
 	end
 
 	def new
@@ -49,6 +49,10 @@ class PostsController < ApplicationController
 		@post.destroy
 		redirect_to request.referrer
 
+	end
+
+	def allposts
+		@posts=Organization.all
 	end
 
 	private

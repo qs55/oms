@@ -19,7 +19,14 @@ class User < ApplicationRecord
   belongs_to :manager, class_name: "User"
 
   def admin?
-  	user_type == 'manager'
+  	user_type == 'admin'
+  end
+
+    def manager?
+    user_type == 'manager'
+  end
+    def employee?
+    user_type == 'employee'
   end
 
   def active_for_authentication?

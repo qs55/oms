@@ -1,4 +1,4 @@
- 
+ <div class="main">
 <p>
   <strong>User Name</strong>
   <%= current_user.name %>
@@ -18,3 +18,13 @@
 
 <%= link_to 'Edit', edit_post_comment_path(@comment) %> |
 <%= link_to 'Back', post_comments_path %>
+</p>
+</div>
+<div class="sidenav">
+  <h3 style="color: red;">Messages</h3>
+  <% @users.each do |user| %>
+  <a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
+     <br>
+  <% end %>
+
+</div>
