@@ -5,7 +5,6 @@
 	<title>Organization Management System</title>
 	<%= csrf_meta_tags %>
 	<%= csp_meta_tag %>
-
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 	<style>
@@ -53,7 +52,6 @@
 	.btn {
     background-color: darkslategrey;
   }
-
 	</style>
 </head>
 
@@ -62,8 +60,10 @@
 		<%= render "layouts/header"%>
 		<div class="main">
 		<% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-        <% end %>
+      <div class="<%= flash_class(key) %>">
+            <%= value %>
+      </div>
+		<% end %>
    		 </div>
 
 		<%= yield %>

@@ -21,6 +21,7 @@ class PostsController < ApplicationController
 		if @post.save
 			redirect_to post_path(@post)
 		else
+			flash.now[:error]= "Post creation failed. All fields are necessary."
 			render 'new'
 		end
 

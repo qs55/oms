@@ -19,6 +19,7 @@
 </head>
 <body>
 	<div class="main">
+		<%= link_to 'Back', posts_path ,{:class => :btn } %>
 		
 		<h1 class="post"> New Post </h1>
 		
@@ -27,7 +28,7 @@
 
 			<%= render 'form' %>
 
-			<%= link_to 'Back', posts_path ,{:class => :btn , :style => {:background => :dark}} %>
+			
 		</div>
 	</div>
 

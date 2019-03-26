@@ -6,10 +6,7 @@
  margin-left: 400px;
  width: 650px;
  height: 300px; 
- background-color: orange;
-}
-a{
-  color:#47649F;
+ background-color: darkgrey;
 }
 
 body{
@@ -31,6 +28,8 @@ body{
 
 </style>
 <div class="container main">
+  <%= link_to 'Back', posts_path,{:class => :btn} %>
+  <%= link_to 'Edit', edit_post_path(@post),{:class => :btn} %>
   <div class="col-md-5">
     <div class="panel panel-default">
       <div class="panel-body">
@@ -43,6 +42,7 @@ body{
               </div>
               <div class="media-body">
                 <strong class="anchor-username"><h4 class="media-heading"> <%= current_user.name %></h4></strong> 
+
                 <p class="anchor-time"><%= @post.created_at %></p >
               </div>
             </div>
@@ -52,6 +52,7 @@ body{
          </div>
        </div>             
      </section>
+
      <section class="post-body">
        <p><%= @post.body %></p>
      </section>
@@ -68,7 +69,7 @@ body{
 <h4>Add a comment:</h4>
 <%= render 'comments/form' %>
 
-<%= link_to 'Back', posts_path,{:class => :btn , :style => {:background => :dark}} %>
+
 
 </div>
 </div>
