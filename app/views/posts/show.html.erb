@@ -1,84 +1,59 @@
+<%= stylesheet_link_tag 'posts' %>
 <style type="text/css">
-.post-body{
-
- border: double;
- border-color: blue;
- margin-left: 400px;
- width: 650px;
- height: 300px; 
- background-color: darkgrey;
-}
-
-body{
-  font-family:'helvetica';    
-}
-
-
-.anchor-username h4{
-  font-weight:bold;  
-  color: #47649F; 
-  text-align: right; 
-}
-
-.anchor-time{
- 
-  font-size:1.2rem;
-   text-align: right;
-}
-
+  #postbody {
+    border: 2px solid black;
+    background-color: cadetblue;
+    height: 300px;
+  }
 </style>
-<div class="container main">
+
+<div class="main">
   <%= link_to 'Back', posts_path,{:class => :btn} %>
-  <%= link_to 'Edit', edit_post_path(@post),{:class => :btn} %>
-  <div class="col-md-5">
-    <div class="panel panel-default">
-      <div class="panel-body">
-       <section class="post-heading">
-        <div class="row">
-          <div class="col-md-11">
-            <div class="media">
-              <div class="media-left">
 
-              </div>
-              <div class="media-body">
-                <strong class="anchor-username"><h4 class="media-heading"> <%= current_user.name %></h4></strong> 
 
-                <p class="anchor-time"><%= @post.created_at %></p >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-1">
-           <a href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
-         </div>
-       </div>             
-     </section>
+  <div class="w3-conatiner row"> 
+    <div class="col-md-3">
+      <div class="media-body">
+        <strong class="anchor-username"><h4 class="media-heading"> <%= @post.user.name %></h4></strong> 
 
-     <section class="post-body">
+        <p class="anchor-time"><%= @post.created_at %></p >
+      </div>
+    </div>
+
+    <div class="col-md-6">
+     <section id="postbody">
        <p><%= @post.body %></p>
      </section>
 
+     <center><h5 "><u><b>Comments</b></u></h5></center>
+     <%= render @post.comments %>
+
+     <h4>New comment</h4>
+     <%= render 'comments/form' %>
    </div>
- </div>   
-</div>
+   <div class="col-md-3">
+    <center> <div >
+       <%= image_tag(@post.avatar_url,height: 300,width: 300)  if @post.avatar.present? %>
+     </div>
+     <br>
+     <% if current_user.id == @post.user_id || current_user.id == @post.user.manager.id || current_user.admin?%>
+     <div >  <%= link_to 'Edit this Post', edit_post_path(@post),{:class => :btn} %></div>
+     <br>
+     <div >  <%= link_to 'Destroy this Post', post_path(@post),class: "btn",
+        method: :delete,
+        data: { confirm: 'Are you sure?' } %></div>
+        <% end %>
+   </center>
+   </div>
+ </div>
+</div>   
 
-
-<br><br><br>
-<h5 style="color: red; font-size: 35px;"><u><b>Comments</b></u></h5>
-<%= render @post.comments %>
-
-<h4>Add a comment:</h4>
-<%= render 'comments/form' %>
-
-
-
-</div>
-</div>
 
 <div class="sidenav">
   <h3 style="color: red;">Messages</h3>
   <% @users.each do |user| %>
   <a <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></a>
-     <br>
+  <br>
   <% end %>
 
 </div>

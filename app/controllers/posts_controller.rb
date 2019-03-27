@@ -4,7 +4,12 @@ class PostsController < ApplicationController
 	before_action :set_message_users
 
 	def index
-		@posts=current_user.posts.all.where(:status => "active")
+		if current_user.admin?
+			@posts= Post.all.where(:status => "active")
+		else 
+			@ids = User.select("id").where(:org_id => current_user.org_id).or(User.select("id").where(:user_type => "admin"))
+			@posts=Post.where(:user_id => @ids).where(:status => "active")
+		end
 	end
 
 	def new
@@ -48,12 +53,17 @@ class PostsController < ApplicationController
 	def destroy
 		@post = Post.find(params[:id])
 		@post.destroy
-		redirect_to request.referrer
+		flash[:success]="Post deleted successfully"
+		redirect_to posts_path
 
 	end
 
 	def allposts
 		@posts=Organization.all
+	end
+
+	def archived
+		@posts= current_user.posts.where(:status => "archived")
 	end
 
 	private

@@ -6,10 +6,10 @@
 <table  class="table table-dark">
    <thead style="background-color: rosybrown;" >
   <tr>
-    <th
     <th>Full Name </th>
     <th>Role </th>
     <th>Email</th>
+    <th>Manager</th>
 
   </tr>
 </thead>
@@ -19,13 +19,13 @@
       <td><%= @user.name %></td>
       <td><strong><%= @user.user_type %></strong></td>
       <td><%= @user.email %></td>
+      <td><%= @user.manager.name %>
 
     </tr>
 </table>
 
 
-<h2>Posts</h2>
-<%= render @user.posts %>
+
 
 <%= link_to 'Back', users_path,{:class => :btn , :style => {:background => :dark}} %>
 

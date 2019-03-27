@@ -17,8 +17,10 @@ class CommentsController < ApplicationController
 		@comment.post_id=params[:post_id]
 		@comment.message=comment_params[:message]
 		if @comment.save
+			flash[:success]="Commented successfully"
 			redirect_to post_path (@post)
 		else
+			flash.now[:error]="Comment failed"
 			render 'new'
 		end
 	end
@@ -26,7 +28,8 @@ class CommentsController < ApplicationController
 	def destroy
 		@comment = @post.comments.find(params[:id])
 		@comment.destroy
-		redirect_to post_comments_path
+		flash[:success]="Comment deleted successfully"
+		redirect_to post_path(@post)
 	end
 
 	def show
@@ -45,7 +48,8 @@ class CommentsController < ApplicationController
 		@comment.message=comment_params[:message]
 
 		if @comment.update(comment_params)
-			redirect_to post_comment_path(@post,@comment)
+			flash[:success]="Comment updated successfully"
+			redirect_to post_path (@post)
 		else
 			render 'edit'
 		end

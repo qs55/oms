@@ -1,36 +1,7 @@
 <%= stylesheet_link_tag 'messages' %>
-<style type="text/css">
-
-
-	#wrapper {
-    width: 100%;
-    border: 1px solid black;
-    overflow: hidden; /* will contain if #first is longer than #second */
-}
-#first {
-    width: 90%;
-    float:left; /* add this */
-    border: 1px solid red;
-}
-#second {
-    border: 1px solid green;
-    overflow: hidden; /* if you don't want #second to wrap below #first */
-}
-
-.custombtn {
-	width: 10%;
-	height: 90px;
-	border: 1px solid green;
-}
-
-.btn2 {
-	margin-left: 0px;
-}
-}
-</style>
 
 <div class="main conatiner">
-	<%= link_to "Back", :back ,class: "btn btn2" %>
+	<%= link_to "Back", users_path ,class: "btn btn2" %>
 	<% if @over_ten %>
 	<%= link_to 'Show Previous', '?m=all' %>
 	<% end %>
@@ -48,10 +19,6 @@
 		<center>
 			<h4 ><u> Message To: <%= @name %> </u></h4>
 		</center>
-
-
-		
-		
 
 
 	<div class="container">

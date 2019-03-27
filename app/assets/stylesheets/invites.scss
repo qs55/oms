@@ -1,3 +1,14 @@
 // Place all the styles related to the invites controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+	* {box-sizing: border-box;}
+
+	.invite { 
+		
+		font-family: Arial, Helvetica, sans-serif;
+		
+	}
+
+	.container {
+		max-width: 650px;
+	}

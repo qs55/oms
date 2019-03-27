@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<style>
-	* {box-sizing: border-box;}
-
-	.post { 
-		
-		font-family: Arial, Helvetica, sans-serif;
-		margin-left: 250px;
-	}
-	.btn
-	{
-		background-color: darkslategrey;
-	}
-</style>
-
-</head>
-<body>
+<%= stylesheet_link_tag 'posts' %>
 	<div class="main">
 		<%= link_to 'Back', posts_path ,{:class => :btn } %>
 		
@@ -40,6 +21,3 @@
 		<% end %>
 
 	</div>
-
-</body>
-</html>

@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		if(current_user.user_type=="admin")
+		if(current_user.admin?)
 			@user = User.find(params[:id])
 		else
 			flash[:error]= "You are not authorized"

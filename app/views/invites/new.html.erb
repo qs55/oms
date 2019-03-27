@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html>
+<%= stylesheet_link_tag 'invites' %>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<style>
-	* {box-sizing: border-box;}
-
-	.invite { 
-		
-		font-family: Arial, Helvetica, sans-serif;
-		
-	}
-
-	.container {
-		max-width: 650px;
-	}
-
-
-</style>
 </head>
-<body>
+	<div class="main">
 	<div class="invite container">
 		<center>
 			<h1> New Invite </h1>
@@ -28,6 +12,7 @@
 
 		<%= link_to 'Back', users_path,{:class => :btn } %>
 	</div>
+</div>
 
 	<div class="sidenav">
 		<h3 style="color: red;">Messages</h3>
@@ -37,6 +22,3 @@
 		<% end %>
 
 	</div>
-
-</body>
-</html>

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
 
 	def after_sign_in_path_for(resource)
-		if (resource.sign_in_count == 1 && resource.user_type=='manager')
+		if ( resource.user_type=='manager' && resource.org_id==nil)
 			new_organization_path
 		else
 			root_path
